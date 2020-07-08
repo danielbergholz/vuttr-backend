@@ -6,4 +6,12 @@ if !(docker start postgres-vuttr); then
   printf "\npostgres-vuttr image created! 🚀\n\n"
 fi
 
+if !(adonis migration:run); then
+  printf "\nAdonis is not installed 🆘\n\n"
+  printf "\nInstalling adonis... 🚀"
+  printf "\nPlease enter password for global npm install 🤔\n\n"
+  sudo npm i -g @adonisjs/cli
+  adonis migration:run
+fi
+
 printf "\nSUCCESS! 🎉\n\n"
