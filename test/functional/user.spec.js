@@ -76,3 +76,20 @@ test('It should not be able to update profile with wrong password', async ({ cli
 
   response.assertStatus(400)
 })
+
+test('It should be able to update user name and password', async ({ client }) => {
+  const user = await User.findBy('email', 'daniel@gmail.com')
+
+  const response1 = await client.put('/user').send({
+    name: 'new-name',
+    password: '123123'
+  }).loginVia(user, 'jwt').end()
+
+  const response2 = await client.put('/user').send({
+    password: '123123',
+    newPassword: 'new-password'
+  }).loginVia(user, 'jwt').end()
+
+  response1.assertStatus(204)
+  response2.assertStatus(204)
+})
