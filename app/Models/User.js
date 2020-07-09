@@ -27,12 +27,12 @@ class User extends Model {
    * `rememberToken` will be saved inside the
    * tokens table.
    *
-   * @method tokens
+   * @method tools
    *
    * @return {Object}
    */
-  tokens () {
-    return this.hasMany('App/Models/Token')
+  tools () {
+    return this.hasMany('App/Models/Tool')
   }
 }
 
