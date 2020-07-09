@@ -16,6 +16,17 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
-})
+// USER ROUTES ******************************************************
+
+// LIST ALL USERS
+Route.get('/user', 'UserController.index')
+// CREATE USER
+Route.post('/user', 'UserController.store')
+// UPDATE USER
+Route.put('/user', 'UserController.update').middleware('auth')
+// DELETE USER
+Route.delete('/user', 'UserController.destroy')
+
+// SESSION ROUTES ***************************************************
+// CREATE SESSION
+Route.post('/session', 'SessionController.store')

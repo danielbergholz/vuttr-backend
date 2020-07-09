@@ -24,6 +24,7 @@
     "@adonisjs/framework": "^5.0.9",
     "@adonisjs/ignitor": "^2.0.8",
     "@adonisjs/lucid": "^6.1.3",
+    "@adonisjs/vow": "^1.0.17",
     "pg": "^8.2.2"
   },
   "devDependencies": {
@@ -32,7 +33,8 @@
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1"
+    "eslint-plugin-standard": "^4.0.1",
+    "sqlite3": "^5.0.0"
   },
   "autoload": {
     "App": "./app"
