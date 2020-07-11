@@ -66,7 +66,11 @@ class UserController {
   }
 
   // DELETE USER
-  destroy () { return { mensagem: 'Usuário deletado com sucesso!' } }
+  async destroy ({ auth }) {
+    const user = await auth.getUser()
+
+    await user.delete()
+  }
 }
 
 module.exports = UserController

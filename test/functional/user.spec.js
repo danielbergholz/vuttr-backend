@@ -93,3 +93,12 @@ test('It should be able to update user name and password', async ({ client }) =>
   response1.assertStatus(204)
   response2.assertStatus(204)
 })
+
+// DELETE
+test('It should be able to delete logged user', async ({ client }) => {
+  const user = await User.findBy('email', 'daniel@gmail.com')
+
+  const response = await client.delete('/user').loginVia(user, 'jwt').end()
+
+  response.assertStatus(204)
+})

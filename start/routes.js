@@ -25,7 +25,7 @@ Route.post('/user', 'UserController.store')
 // UPDATE USER
 Route.put('/user', 'UserController.update').middleware('auth')
 // DELETE USER
-Route.delete('/user', 'UserController.destroy')
+Route.delete('/user', 'UserController.destroy').middleware('auth')
 
 // SESSION ROUTES ***************************************************
 // CREATE SESSION
