@@ -95,10 +95,26 @@ test('It should be able to update user name and password', async ({ client }) =>
 })
 
 // DELETE
-test('It should be able to delete logged user', async ({ client }) => {
+test('It should not be able to delete user without password on request body', async ({ client }) => {
   const user = await User.findBy('email', 'daniel@gmail.com')
 
   const response = await client.delete('/user').loginVia(user, 'jwt').end()
+
+  response.assertStatus(400)
+})
+
+test('It should not be able to delete user with wrong password', async ({ client }) => {
+  const user = await User.findBy('email', 'daniel@gmail.com')
+
+  const response = await client.delete('/user').send({ password: 'wrong-password' }).loginVia(user, 'jwt').end()
+
+  response.assertStatus(400)
+})
+
+test('It should be able to delete logged user', async ({ client }) => {
+  const user = await User.findBy('email', 'daniel@gmail.com')
+
+  const response = await client.delete('/user').send({ password: 'new-password' }).loginVia(user, 'jwt').end()
 
   response.assertStatus(204)
 })

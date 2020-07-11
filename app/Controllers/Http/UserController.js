@@ -66,8 +66,21 @@ class UserController {
   }
 
   // DELETE USER
-  async destroy ({ auth }) {
+  async destroy ({ request, response, auth }) {
+    const { password } = request.post()
+
+    if (!password) {
+      response.status(400).json({ error: 'Missing password on request body' })
+      return
+    }
+
     const user = await auth.getUser()
+    const passwordCheck = await Hash.verify(password, user.password)
+
+    if (!passwordCheck) {
+      response.status(400).json({ error: 'Invalid password' })
+      return
+    }
 
     await user.delete()
   }
