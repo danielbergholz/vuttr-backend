@@ -28,5 +28,17 @@ Route.put('/user', 'UserController.update').middleware('auth')
 Route.delete('/user', 'UserController.destroy').middleware('auth')
 
 // SESSION ROUTES ***************************************************
+
 // CREATE SESSION
 Route.post('/session', 'SessionController.store')
+
+// TOOL ROUTES ******************************************************
+
+// LIST TOOLS
+Route.get('/tool', 'ToolController.index')
+// CREATE TOOL
+Route.post('/tool', 'ToolController.store').middleware('auth')
+// UPDATE TOOL
+Route.put('/tool', 'ToolController.update').middleware('auth')
+// DELETE TOOL
+Route.delete('/tool/:id', 'ToolController.destroy').middleware('auth')

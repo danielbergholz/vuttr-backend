@@ -33,6 +33,8 @@ class UserController {
     })
 
     await user.save()
+    response.status(201)
+
     return user
   }
 
@@ -41,7 +43,7 @@ class UserController {
     const { name, password, newPassword } = request.post()
 
     if (!password) {
-      response.status(400).json({ error: 'Missing password or email on request body' })
+      response.status(400).json({ error: 'Missing password on request body' })
       return
     }
 
@@ -62,6 +64,7 @@ class UserController {
         user.password = newPassword
       }
       await user.save()
+      return user
     }
   }
 
