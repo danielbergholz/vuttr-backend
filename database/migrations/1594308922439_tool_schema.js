@@ -11,7 +11,7 @@ class ToolSchema extends Schema {
     this.create('tools', (table) => {
       table.increments()
       table.integer('user_id').unsigned().references('id').inTable('users')
-      table.string('title').notNullable().unique()
+      table.string('title').notNullable()
       table.string('link').notNullable()
       table.string('description')
       table.specificType('tags', Env.get('DB_CONNECTION') === 'sqlite' ? 'character varying(255)' : 'character varying(255)[]')
