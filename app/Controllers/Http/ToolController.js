@@ -5,14 +5,23 @@ const Tool = use('App/Models/Tool')
 
 class ToolController {
   // LIST TOOLS
-  index ({ request, response, auth }) {
-    return Tool.all()
-  }
+  async index ({ request, auth }) {
+    const { tag } = request.get()
 
-  // COMEÇAR A IMPLEMENTAR O MÉTODO DE LISTAR TOOLSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
-  // LISTA TODAS AS TOOLS DE UM USUÁRIO
-  // FILTRAR TOOLS POR TAG
-  // TALVEZ CRIAR OUTRO CONTROLLER PRA ESSES FILTROS?
+    const user = await auth.getUser()
+
+    const query = Tool.query().where('user_id', user.id)
+
+    let tools
+    if (tag) {
+      const lowerCasetag = tag.toLowerCase()
+      tools = await query.where('tags', '@>', `{${lowerCasetag}}`).fetch()
+    } else {
+      tools = await query.fetch()
+    }
+
+    return tools
+  }
 
   // CREATE TOOL
   async store ({ request, response, auth }) {
@@ -32,8 +41,10 @@ class ToolController {
       return
     }
 
+    const lowerCasetags = tags.map(tag => tag.toLowerCase())
+
     const tool = await Tool.create({
-      title: title.toLowerCase(), link, tags, description, user_id: user.id
+      title: title.toLowerCase(), link, tags: lowerCasetags, description, user_id: user.id
     })
 
     response.status(201)

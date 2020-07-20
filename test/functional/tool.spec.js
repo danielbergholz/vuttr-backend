@@ -130,6 +130,27 @@ test('It should be able to update tool', async ({ client }) => {
   })
 })
 
+// LIST
+test('It should be able to list all tools from an user', async ({ client }) => {
+  const response = await client.get('/tool').loginVia(user, 'jwt').end()
+
+  response.assertStatus(200)
+  response.assertJSONSubset(
+    [{ id: user.id }]
+  )
+})
+
+// ARRAY COLUMNS DOESN'T EXIST ON SQLITE, SO THE TAG FILTER CANNOT BE TESTED
+
+// test('It should be able to list all tools using "tag" filter', async ({ client }) => {
+//   const response = await client.get('/tool?tag=node').loginVia(user, 'jwt').end()
+
+//   response.assertStatus(200)
+//   response.assertJSONSubset(
+//     [{ id: 'user.id' }]
+//   )
+// })
+
 // DELETE
 test('It should not be able to delete tool with wrong id', async ({ client }) => {
   const response = await client.delete('/tool/wrong-id').loginVia(user, 'jwt').end()

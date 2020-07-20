@@ -35,7 +35,7 @@ Route.post('/session', 'SessionController.store')
 // TOOL ROUTES ******************************************************
 
 // LIST TOOLS
-Route.get('/tool', 'ToolController.index')
+Route.get('/tool', 'ToolController.index').middleware('auth')
 // CREATE TOOL
 Route.post('/tool', 'ToolController.store').middleware('auth')
 // UPDATE TOOL
