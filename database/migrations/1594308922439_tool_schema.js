@@ -10,7 +10,7 @@ class ToolSchema extends Schema {
   up () {
     this.create('tools', (table) => {
       table.increments()
-      table.integer('user_id').unsigned().references('id').inTable('users')
+      table.integer('user_id').unsigned().references('id').inTable('users').onDelete('cascade')
       table.string('title').notNullable()
       table.string('link').notNullable()
       table.string('description')
