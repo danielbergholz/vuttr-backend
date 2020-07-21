@@ -21,4 +21,4 @@ jobs:
       with:
         node-version: 12.x
     - run: yarn
-    - run: node ace test
+    - run: ENV_SILENT=true node ace test
