@@ -47,6 +47,18 @@ docker pull bitnami/postgresql:latest
 docker run --name postgres-vuttr -e POSTGRESQL_PASSWORD=docker -e POSTGRESQL_USERNAME=postgres -e POSTGRESQL_DATABASE=vuttr -p 5432:5432 -d bitnami/postgresql:latest
 ```
 
+- Run migrations:
+
+```bash
+adonis migration:run
+```
+
+- Generate APP_KEY:
+
+```bash
+adonis key:generate
+```
+
 - Start local dev server:
 
 ```bash

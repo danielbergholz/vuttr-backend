@@ -14,6 +14,7 @@ if node -v && npm -v; then
     printf "\nInstalling adonis... 🚀"
     printf "\nPlease enter password for global npm install 🤔\n\n"
     sudo npm i -g @adonisjs/cli
+    adonis key:generate
   fi
 
   if docker -v; then
