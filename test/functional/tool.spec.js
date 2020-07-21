@@ -136,7 +136,7 @@ test('It should be able to list all tools from an user', async ({ client }) => {
 
   response.assertStatus(200)
   response.assertJSONSubset(
-    [{ id: user.id }]
+    { data: [{ id: user.id }] }
   )
 })
 

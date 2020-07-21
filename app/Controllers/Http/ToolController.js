@@ -6,7 +6,7 @@ const Tool = use('App/Models/Tool')
 class ToolController {
   // LIST TOOLS
   async index ({ request, auth }) {
-    const { tag } = request.get()
+    const { tag, page } = request.get()
 
     const user = await auth.getUser()
 
@@ -17,7 +17,7 @@ class ToolController {
       const lowerCasetag = tag.toLowerCase()
       tools = await query.where('tags', '@>', `{${lowerCasetag}}`).fetch()
     } else {
-      tools = await query.fetch()
+      tools = await query.paginate(page, 5)
     }
 
     return tools
