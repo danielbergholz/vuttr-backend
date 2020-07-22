@@ -12,9 +12,6 @@
 
 const Env = use('Env')
 
-const Url = require('url-parse')
-const REDIS_URL = new Url(Env.get('REDIS_URL'))
-
 module.exports = {
   /*
   |--------------------------------------------------------------------------
@@ -24,24 +21,25 @@ module.exports = {
   | Redis connection to be used by default.
   |
   */
-  connection: 'default',
+  connection: Env.get('REDIS_URL') ? 'heroku' : 'local',
 
   /*
   |--------------------------------------------------------------------------
-  | default connection config
+  | local connection config
   |--------------------------------------------------------------------------
   |
   | Configuration for a named connection.
   |
   */
-  default: {
-    host: REDIS_URL.host || '127.0.0.1',
-    port: REDIS_URL.port || 6379,
-    password: REDIS_URL.password || null,
-    user: REDIS_URL.user || null,
+  local: {
+    host: '127.0.0.1',
+    port: 6379,
+    password: null,
     db: 0,
     keyPrefix: ''
   },
+
+  heroku: Env.get('REDIS_URL'),
 
   /*
   |--------------------------------------------------------------------------
