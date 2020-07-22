@@ -3,10 +3,12 @@
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Tool = use('App/Models/Tool')
 
+const Redis = use('Redis')
+
 class ToolController {
   // LIST TOOLS
   async index ({ request, auth }) {
-    const { tag, page } = request.get()
+    const { tag, page = 1 } = request.get()
 
     const user = await auth.getUser()
 
@@ -17,7 +19,13 @@ class ToolController {
       const lowerCasetag = tag.toLowerCase()
       tools = await query.where('tags', '@>', `{${lowerCasetag}}`).fetch()
     } else {
-      tools = await query.paginate(page, 5)
+      const cachedTools = await Redis.get(`tools:user=${user.id}:page=${page}`)
+      if (cachedTools) {
+        return JSON.parse(cachedTools)
+      } else {
+        tools = await query.paginate(page, 5)
+        await Redis.set(`tools:user=${user.id}:page=${page}`, JSON.stringify(tools))
+      }
     }
 
     return tools
@@ -45,6 +53,14 @@ class ToolController {
 
     const tool = await Tool.create({
       title: title.toLowerCase(), link, tags: lowerCasetags, description, user_id: user.id
+    })
+
+    Redis.keys(`tools:user=${user.id}:*`).then(function (keys) {
+      var pipeline = Redis.pipeline()
+      keys.forEach(function (key) {
+        pipeline.unlink(key)
+      })
+      return pipeline.exec()
     })
 
     response.status(201)
@@ -89,6 +105,14 @@ class ToolController {
 
     await tool.save()
 
+    Redis.keys(`tools:user=${user.id}:*`).then(function (keys) {
+      var pipeline = Redis.pipeline()
+      keys.forEach(function (key) {
+        pipeline.unlink(key)
+      })
+      return pipeline.exec()
+    })
+
     return tool
   }
 
@@ -101,9 +125,17 @@ class ToolController {
     const tool = await Tool.findBy({ id, user_id: user.id })
 
     if (!tool) {
-      response.status(400).json({ error: `Tool with id='${id}' not found` })
+      response.status(400).json({ error: `Tool with id = '${id}' not found` })
       return
     }
+
+    Redis.keys(`tools:user=${user.id}:*`).then(function (keys) {
+      var pipeline = Redis.pipeline()
+      keys.forEach(function (key) {
+        pipeline.unlink(key)
+      })
+      return pipeline.exec()
+    })
 
     await tool.delete()
   }

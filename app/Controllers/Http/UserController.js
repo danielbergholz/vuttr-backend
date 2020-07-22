@@ -6,6 +6,8 @@ const User = use('App/Models/User')
 /** @type {import('@adonisjs/framework/src/Hash')} */
 const Hash = use('Hash')
 
+const Redis = use('Redis')
+
 class UserController {
   // LIST USERS
   index () {
@@ -84,6 +86,14 @@ class UserController {
       response.status(400).json({ error: 'Invalid password' })
       return
     }
+
+    Redis.keys(`tools:user=${user.id}:*`).then(function (keys) {
+      var pipeline = Redis.pipeline()
+      keys.forEach(function (key) {
+        pipeline.unlink(key)
+      })
+      return pipeline.exec()
+    })
 
     await user.delete()
   }

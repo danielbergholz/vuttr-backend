@@ -20,6 +20,8 @@ if node -v && npm -v; then
   if docker -v; then
     printf "\nInstalling docker postgres image... 🚀\n\n"
     docker pull bitnami/postgresql:latest
+    printf "\nInstalling docker redis image... 🚀\n\n"
+    docker pull redis:alpine
   else
     printf "\nERROR: You need to install docker first 🆘\n\n"
     exit 1
