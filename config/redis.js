@@ -38,7 +38,7 @@ module.exports = {
     host: REDIS_URL.host || '127.0.0.1',
     port: REDIS_URL.port || 6379,
     password: REDIS_URL.password || null,
-    user: REDIS_URL.username || null,
+    user: REDIS_URL.user || null,
     db: 0,
     keyPrefix: ''
   },
