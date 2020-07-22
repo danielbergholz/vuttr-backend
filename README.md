@@ -35,16 +35,28 @@ adonis serve --dev
 npm i -g @adonisjs/cli
 ```
 
-- Pull docker image:
+- Pull postgres docker image:
 
 ```bash
 docker pull bitnami/postgresql:latest
 ```
 
-- Create docker image:
+- Pull redis docker image:
+
+```bash
+docker pull redis:alpine
+```
+
+- Create postgres docker image:
 
 ```bash
 docker run --name postgres-vuttr -e POSTGRESQL_PASSWORD=docker -e POSTGRESQL_USERNAME=postgres -e POSTGRESQL_DATABASE=vuttr -p 5432:5432 -d bitnami/postgresql:latest
+```
+
+- Create redis docker image:
+
+```bash
+docker run --name redis-vuttr -p 6379:6379 -d -t redis:alpine
 ```
 
 - Run migrations:
