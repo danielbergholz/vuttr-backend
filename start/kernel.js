@@ -52,7 +52,7 @@ const namedMiddleware = {
 | control over request lifecycle.
 |
 */
-const serverMiddleware = Env.get('NODE_ENV') ? [
+const serverMiddleware = Env.get('NODE_ENV') === 'development' ? [
   'Adonis/Middleware/Static',
   'Adonis/Middleware/Cors'
 ] : [
