@@ -29,22 +29,16 @@ adonis serve --dev
 ```
 
 ## Usage (Windows)
+- Install dependencies:
+
+```bash
+yarn
+```
+
 - Install adonis:
 
 ```bash
 npm i -g @adonisjs/cli
-```
-
-- Pull postgres docker image:
-
-```bash
-docker pull bitnami/postgresql:latest
-```
-
-- Pull redis docker image:
-
-```bash
-docker pull redis:alpine
 ```
 
 - Create postgres docker image:
@@ -76,3 +70,8 @@ adonis key:generate
 ```bash
 adonis serve --dev
 ```
+
+## Extra steps
+- Create your own ".env" file based on ".env.example"
+- Visit the swagger documentation on http://localhost:3000/docs after starting the server
+- Get the "swagger.json" file on http://localhost:3000/swagger.json or https://very-useful-tools-to-remember.herokuapp.com/swagger.json
