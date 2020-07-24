@@ -18,8 +18,6 @@ const Route = use('Route')
 
 // USER ROUTES ******************************************************
 
-// LIST ALL USERS
-Route.get('/user', 'UserController.index')
 // CREATE USER
 Route.post('/user', 'UserController.store')
 // UPDATE USER

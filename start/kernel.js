@@ -3,6 +3,9 @@
 /** @type {import('@adonisjs/framework/src/Server')} */
 const Server = use('Server')
 
+/** @type {import('@adonisjs/framework/src/Env')} */
+const Env = use('Env')
+
 /*
 |--------------------------------------------------------------------------
 | Global Middleware
@@ -49,8 +52,10 @@ const namedMiddleware = {
 | control over request lifecycle.
 |
 */
-const serverMiddleware = [
-  // 'Adonis/Middleware/Static',
+const serverMiddleware = Env.get('NODE_ENV') ? [
+  'Adonis/Middleware/Static',
+  'Adonis/Middleware/Cors'
+] : [
   'Adonis/Middleware/Cors'
 ]
 
