@@ -94,14 +94,6 @@ module.exports = {
                     email: {
                       type: 'string',
                       example: 'luisa@gmail.com'
-                    },
-                    created_at: {
-                      type: 'string',
-                      example: '2020-07-21 20:44:41'
-                    },
-                    updated_at: {
-                      type: 'string',
-                      example: '2020-07-21 20:44:41'
                     }
                   }
 
@@ -181,14 +173,6 @@ module.exports = {
                     email: {
                       type: 'string',
                       example: 'luisa@gmail.com'
-                    },
-                    created_at: {
-                      type: 'string',
-                      example: '2020-07-21 20:44:41'
-                    },
-                    updated_at: {
-                      type: 'string',
-                      example: '2020-07-21 20:44:41'
                     }
                   }
 
@@ -308,6 +292,14 @@ module.exports = {
                     refreshToken: {
                       type: 'null',
                       example: null
+                    },
+                    user: {
+                      type: 'object',
+                      example: {
+                        id: 2,
+                        name: 'luisa',
+                        email: 'luisa@gmail.com'
+                      }
                     }
                   }
 
@@ -388,9 +380,7 @@ module.exports = {
                           'web',
                           'produtividade',
                           'notion'
-                        ],
-                        created_at: '2020-07-22 14:06:59',
-                        updated_at: '2020-07-22 14:06:59'
+                        ]
                       }]
                     }
                   }
@@ -461,14 +451,6 @@ module.exports = {
                     id: {
                       type: 'integer',
                       example: 8
-                    },
-                    created_at: {
-                      type: 'string',
-                      example: '2020-07-21 20:44:41'
-                    },
-                    updated_at: {
-                      type: 'string',
-                      example: '2020-07-21 20:44:41'
                     },
                     title: {
                       type: 'string',
@@ -575,14 +557,6 @@ module.exports = {
                     id: {
                       type: 'integer',
                       example: 8
-                    },
-                    created_at: {
-                      type: 'string',
-                      example: '2020-07-21 20:44:41'
-                    },
-                    updated_at: {
-                      type: 'string',
-                      example: '2020-07-21 20:44:41'
                     },
                     title: {
                       type: 'string',
