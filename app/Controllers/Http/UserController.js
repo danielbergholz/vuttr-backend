@@ -9,11 +9,6 @@ const Hash = use('Hash')
 const Redis = use('Redis')
 
 class UserController {
-  // LIST USERS
-  index () {
-    return User.all()
-  }
-
   // CREATE USER
   async store ({ request, response }) {
     const { name, email, password } = request.post()
