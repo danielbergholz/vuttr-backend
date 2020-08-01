@@ -1,6 +1,6 @@
 # VUTTR - backend
 
-This is the codebase for the backend of VUTTR (Very Useful Tools to Remember), a coding challenge provided by Bossabox.
+This is the codebase for the REST API of VUTTR (Very Useful Tools to Remember), a coding challenge provided by [Bossabox](https://app.bossabox.com/u/daniel-bergholz).
 
 ## Tools used
 - [NodeJS](https://nodejs.org/en/)
@@ -73,5 +73,15 @@ adonis serve --dev
 
 ## Extra steps
 - Create your own ".env" file based on ".env.example"
-- Visit the swagger documentation on http://localhost:3000/docs after starting the server
+- Visit the swagger documentation on http://localhost:3000/docs or https://very-useful-tools-to-remember.herokuapp.com/docs
 - Get the "swagger.json" file on http://localhost:3000/swagger.json or https://very-useful-tools-to-remember.herokuapp.com/swagger.json
+
+<!-- 
+## Tutorial
+- You can watch a tutorial of this REST API on YouTube
+
+## Live version
+- The live version of the VUTTR website is hosted on https://vuttr.netlify.app -->
+
+## Frontend repo
+- The frontend codebase can be found on https://github.com/danielbergholz/vuttr-frontend
