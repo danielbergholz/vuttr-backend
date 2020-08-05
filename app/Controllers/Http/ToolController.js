@@ -16,7 +16,10 @@ class ToolController {
 
     let tools
     if (tag) {
-      const lowerCasetag = tag.toLowerCase()
+      let lowerCasetag = tag.toLowerCase()
+      while (lowerCasetag[lowerCasetag.length - 1] === ',') {
+        lowerCasetag = lowerCasetag.slice(0, -1)
+      }
       tools = await query.where('tags', '@>', `{${lowerCasetag}}`).fetch()
     } else {
       const cachedTools = await Redis.get(`tools:user=${user.id}:page=${page}`)
@@ -42,7 +45,7 @@ class ToolController {
 
     const user = await auth.getUser()
 
-    const toolExists = await Tool.findBy({ title, user_id: user.id })
+    const toolExists = await Tool.findBy({ title: title.toLowerCase(), user_id: user.id })
 
     if (toolExists) {
       response.status(400).json({ error: `Tool '${title}' already exists` })
@@ -81,7 +84,7 @@ class ToolController {
     const tool = await Tool.find(id)
 
     if (tool.title !== title) {
-      const toolExists = await Tool.findBy({ title, user_id: user.id })
+      const toolExists = await Tool.findBy({ title: title.toLowerCase(), user_id: user.id })
 
       if (toolExists) {
         response.status(400).json({ error: `Tool '${title}' already exists` })
