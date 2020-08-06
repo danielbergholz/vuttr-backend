@@ -3,9 +3,6 @@
 /** @type {import('@adonisjs/framework/src/Server')} */
 const Server = use('Server')
 
-/** @type {import('@adonisjs/framework/src/Env')} */
-const Env = use('Env')
-
 /*
 |--------------------------------------------------------------------------
 | Global Middleware
