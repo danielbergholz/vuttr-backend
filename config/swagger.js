@@ -140,7 +140,7 @@ module.exports = {
                       type: 'string',
                       example: '123123'
                     },
-                    new_password: {
+                    newPassword: {
                       type: 'string',
                       example: '111111',
                       required: false
