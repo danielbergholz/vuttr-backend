@@ -77,8 +77,8 @@ adonis serve --dev
 - Get the "swagger.json" file on http://localhost:3000/swagger.json or https://very-useful-tools-to-remember.herokuapp.com/swagger.json
 
 
-<!-- ## Tutorial
-- You can watch a tutorial of this REST API on YouTube -->
+## Tutorial
+- You can watch a tutorial of this REST API on [YouTube](https://www.youtube.com/watch?v=bX7SUekZKm0)
 
 ## Live version
 - The live version of the VUTTR website is hosted on https://vuttr-frontend.netlify.app
